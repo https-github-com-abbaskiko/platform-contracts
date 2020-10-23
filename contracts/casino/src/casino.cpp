@@ -88,17 +88,17 @@ void casino::on_transfer(name game_account, name casino_account, eosio::asset qu
     }
 }
 
-void casino::on_loss(name game_account, name player_account, eosio::asset quantity) {
+void casino::on_loss(name game_account, name player_account, asset loss, asset payout) {
     require_auth(game_account);
     check(is_account(player_account), "to account does not exist");
     const auto game_id = get_game_id(game_account);
-    transfer(player_account, quantity, "player winnings");
-    sub_balance(game_id, quantity * get_profit_margin(game_id) / percent_100);
+    transfer(player_account, loss, "player winnings");
+    sub_balance(game_id, loss * get_profit_margin(game_id) / percent_100);
 
     // casino loses - player wins 'BET's
     const auto player_stat = get_or_create_player_stat(player_account);
     player_stats.modify(player_stat, _self, [&](auto& row) {
-        row.profit_real += quantity;
+        row.profit_real += payout;
     });
 }
 

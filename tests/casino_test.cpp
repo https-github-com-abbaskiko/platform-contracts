@@ -345,7 +345,8 @@ BOOST_FIXTURE_TEST_CASE(on_loss_update_game_balance, casino_tester) try {
         push_action(casino_account, N(onloss), game_account, mvo()
             ("game_account", game_account)
             ("player_account", player_account)
-            ("quantity", STRSYM("3.0000"))
+            ("loss", STRSYM("3.0000"))
+            ("payout", STRSYM("7.0000"))
         )
     );
 
@@ -378,7 +379,8 @@ BOOST_FIXTURE_TEST_CASE(on_loss_from_nonexistent_casino_game, casino_tester) try
         push_action(casino_account, N(onloss), game_account, mvo()
             ("game_account", game_account)
             ("player_account", player_account)
-            ("quantity", STRSYM("3.0000"))
+            ("loss", STRSYM("3.0000"))
+            ("payout", STRSYM("7.0000"))
         )
     );
 } FC_LOG_AND_RETHROW()
@@ -399,7 +401,8 @@ BOOST_FIXTURE_TEST_CASE(on_loss_from_nonexistent_platform_game, casino_tester) t
         push_action(casino_account, N(onloss), game_account, mvo()
             ("game_account", game_account)
             ("player_account", player_account)
-            ("quantity", STRSYM("3.0000"))
+            ("loss", STRSYM("3.0000"))
+            ("payout", STRSYM("7.0000"))
         )
     );
 } FC_LOG_AND_RETHROW()
@@ -633,7 +636,8 @@ BOOST_FIXTURE_TEST_CASE(withdraw_negative_profits, casino_tester) try {
         push_action(casino_account, N(onloss), game_account, mvo()
             ("game_account", game_account)
             ("player_account", player_account)
-            ("quantity", STRSYM("50.0000"))
+            ("loss", STRSYM("50.0000"))
+            ("payout", STRSYM("100.0000"))
         )
     );
 

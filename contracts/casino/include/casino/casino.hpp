@@ -111,7 +111,7 @@ public:
     [[eosio::on_notify("eosio.token::transfer")]]
     void on_transfer(name from, name to, eosio::asset quantity, std::string memo);
     [[eosio::action("onloss")]]
-    void on_loss(name game_account, name player_account, eosio::asset quantity);
+    void on_loss(name game_account, name player_account, asset loss, asset payout);
     [[eosio::action("claimprofit")]]
     void claim_profit(name game_account);
     [[eosio::action("withdraw")]]
